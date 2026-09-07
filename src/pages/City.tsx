@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { API_BASE_URL } from '../config/api';
 
 type City = {
   id: number;
@@ -21,7 +22,7 @@ function City() {
 
   // Get All Cities
   useEffect(() => {
-    fetch('http://localhost:5142/api/Cities')
+    fetch(`${API_BASE_URL}/api/Cities`)
       .then((response) => response.json())
       .then((data) => {
         setCities(data);
@@ -38,7 +39,7 @@ function City() {
     if (editId !== null) {
 
       const response = await fetch(
-        `http://localhost:5142/api/Cities/${editId}`,
+        `${API_BASE_URL}/api/Cities/${editId}`,
         {
           method: 'PUT',
           headers: {
@@ -76,7 +77,7 @@ function City() {
     else {
 
       const response = await fetch(
-        'http://localhost:5142/api/Cities',
+        `${API_BASE_URL}/api/Cities`,
         {
           method: 'POST',
           headers: {
@@ -96,7 +97,7 @@ function City() {
         return;
       }
 
-      fetch('http://localhost:5142/api/Cities')
+      fetch(`${API_BASE_URL}/api/Cities`)
         .then((response) => response.json())
         .then((data) => {
           setCities(data);
@@ -127,7 +128,7 @@ function City() {
   const handleDelete = async (id: number) => {
 
     const response = await fetch(
-      `http://localhost:5142/api/Cities/${id}`,
+      `${API_BASE_URL}/api/Cities/${id}`,
       {
         method: 'DELETE',
       }

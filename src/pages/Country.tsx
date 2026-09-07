@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { API_BASE_URL } from "../config/api";
 
 type Country = {
   id: number;
@@ -20,7 +21,7 @@ function Country() {
 
   // Get All Countries
   useEffect(() => {
-    fetch('http://localhost:5142/api/Countries')
+    fetch(`${API_BASE_URL}/api/Countries`)
       .then((response) => response.json())
       .then((data) => {
         setCountries(data);
@@ -42,7 +43,7 @@ function Country() {
     if (editId !== null) {
 
       const response = await fetch(
-        `http://localhost:5142/api/Countries/${editId}`,
+        `${API_BASE_URL}/api/Countries/${editId}`,
         {
           method: 'PUT',
           headers: {
@@ -84,7 +85,7 @@ function Country() {
     else {
 
       const response = await fetch(
-        'http://localhost:5142/api/Countries',
+        `${API_BASE_URL}/api/Countries`,
         {
           method: 'POST',
           headers: {
@@ -104,7 +105,7 @@ function Country() {
         return;
       }
 
-      fetch('http://localhost:5142/api/Countries')
+      fetch(`${API_BASE_URL}/api/Countries`)
         .then((response) => response.json())
         .then((data) => {
           setCountries(data);
@@ -136,7 +137,7 @@ function Country() {
   const handleDelete = async (id: number) => {
 
     const response = await fetch(
-      `http://localhost:5142/api/Countries/${id}`,
+      `${API_BASE_URL}/api/Countries/${id}`,
       {
         method: 'DELETE',
       }

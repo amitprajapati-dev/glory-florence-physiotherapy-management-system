@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { API_BASE_URL } from "../config/api";
 
 type State = {
   id: number;
@@ -23,7 +24,7 @@ function State() {
   // Get All States
   useEffect(() => {
 
-    fetch('http://localhost:5142/api/States')
+    fetch(`${API_BASE_URL}/api/States`)
       .then((response) => response.json())
       .then((data) => {
         setStates(data);
@@ -48,7 +49,7 @@ function State() {
     if (editId !== null) {
 
       const response = await fetch(
-        `http://localhost:5142/api/States/${editId}`,
+        `${API_BASE_URL}/api/States/${editId}`,
         {
           method: 'PUT',
           headers: {
@@ -91,7 +92,7 @@ function State() {
     else {
 
       const response = await fetch(
-        'http://localhost:5142/api/States',
+        `${API_BASE_URL}/api/States`,
         {
           method: 'POST',
           headers: {
@@ -113,13 +114,12 @@ function State() {
       }
 
 
-      fetch('http://localhost:5142/api/States')
+      fetch(`${API_BASE_URL}/api/States`)
         .then((response) => response.json())
         .then((data) => {
           setStates(data);
         });
-
-
+        
       handleReset();
     }
 
@@ -148,7 +148,7 @@ function State() {
   const handleDelete = async (id: number) => {
 
     const response = await fetch(
-      `http://localhost:5142/api/States/${id}`,
+      `${API_BASE_URL}/api/States/${id}`,
       {
         method: 'DELETE',
       }

@@ -29,3 +29,7 @@ backend/obj/
 
 # Local development secrets
 backend/appsettings.Development.json
+
+.env
+.env.*
+!.env.example
